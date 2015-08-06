@@ -13,7 +13,10 @@ var moscaSettings = {
   persistence: {
     factory: mosca.persistence.Mongo,
     url: 'mongodb://localhost:27000/mqtt'
-  }
+  },
+  http: {
+	port:3000,
+	bundle: true  }
 };
 
 var server = new mosca.Server(moscaSettings);
