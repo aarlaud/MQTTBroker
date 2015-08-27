@@ -35,7 +35,7 @@ server.on('clientConnected', function(client) {
 
 // fired when a message is received
 server.on('published', function(packet, client) {
-  console.log('Published', packet.payload);
+  console.log('Published', packet.payload.toString());
   console.log('Published topic: ', packet.topic);
 
   if(packet.topic.indexOf('$SYS') < 0){
@@ -49,7 +49,7 @@ server.on('published', function(packet, client) {
 
 		var collection = db.collection('sensorData');
 
-		var datapoint = {topic: packet.topic, payload: packet.payload, date: new Date() };
+		var datapoint = {topic: packet.topic, payload: packet.payload.toString(), date: new Date() };
 		collection.insert(datapoint, function(err,result){
 			if(err){
 				console.log(err);
